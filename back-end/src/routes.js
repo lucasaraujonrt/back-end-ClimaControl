@@ -1,16 +1,20 @@
 const express = require("express");
 const loginVerify = require("./controllers/loginVerifyController");
-const createUserController = require("./controllers/createUserController");
-const createRoomController = require("./controllers/createRoomController");
+const UserController = require("./controllers/UserController");
+const RoomController = require("./controllers/RoomController");
 
 const routes = express.Router();
 
-routes.post("/register", createUserController.create);
-routes.post("/Room", createRoomController.create);
+//User Routes
+routes.post("/registerUser", UserController.create);
+routes.get("/user", UserController.index);
+routes.post("/user/:id", UserController.update);
 routes.post("/user/create", loginVerify.index);
-routes.post("/Room/:id", createRoomController.update);
 
-routes.get("/getRoom", createRoomController.index);
-routes.delete("/Room/:id", createRoomController.delete);
+//Room Routes
+routes.post("/Room", RoomController.create);
+routes.get("/getRoom", RoomController.index);
+routes.post("/Room/:id", RoomController.update);
+routes.delete("/Room/:id", RoomController.delete);
 
 module.exports = routes;
