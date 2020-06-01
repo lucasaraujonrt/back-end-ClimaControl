@@ -6,17 +6,11 @@ const createRoomController = require("./controllers/createRoomController");
 const routes = express.Router();
 
 routes.post("/register", createUserController.create);
-routes.post("/newRoom", createRoomController.create);
+routes.post("/Room", createRoomController.create);
 routes.post("/user/create", loginVerify.index);
-routes.get("/getUser", (req, res) => {
-  const body = req.body;
-  console.log(body);
+routes.post("/Room/:id", createRoomController.update);
 
-  return res.json({
-    equip: "Equipamento1",
-    room: "Sala 3",
-    temperatura: "24 graus",
-  });
-});
+routes.get("/getRoom", createRoomController.index);
+routes.delete("/Room/:id", createRoomController.delete);
 
 module.exports = routes;
