@@ -2,17 +2,15 @@ const connection = require("../database/connection");
 
 module.exports = {
   async index(req, res) {
-    const user = await knex("user").where({ email: req.body.email });
-    console.log(user);
+    const user = await connection("user").where({ email: req.body.email });
     const verify = JSON.stringify(user);
-    if (verify == "[]") console.log("Email Incorreto");
+    if (verify == "[]") throw "Email Invalido";
     else {
-      if (user[0].password_user === req.body.password_user)
-        console.log("Login efetuado");
+      if (user[0].password === req.body.password) console.log("Login efetuado");
       else {
-        console.log("Senha Incorreta");
+        throw "Senha Invalido";
       }
     }
-    return res.json(user);
+    return res.status(200).send();
   },
 };

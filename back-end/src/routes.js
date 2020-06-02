@@ -11,6 +11,10 @@ routes.get("/user", UserController.index);
 routes.post("/user/:id", UserController.update);
 routes.post("/user/create", loginVerify.index);
 
+//login
+
+routes.post("/login", loginVerify.index);
+
 //Room Routes
 routes.post("/Room", RoomController.create);
 routes.get("/getRoom", RoomController.index);
